@@ -4,56 +4,8 @@
    ========================================================= */
 
 // ─── CONFIGURACIÓN ────────────────────────────────────────
-const GEMINI_API_KEY = window.GEMINI_API_KEY || '';
-
-if (!GEMINI_API_KEY) {
-  console.error(
-    '[Master Barber Chatbot] ⚠️  Falta la API Key.\n' +
-    'Copiá .env.example → config.js y pegá tu key de Google AI Studio.'
-  );
-}
-
-const GEMINI_MODEL = 'gemini-2.5-flash';
-const GEMINI_URL   = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
-
-// ─── SYSTEM PROMPT ────────────────────────────────────────
-const SYSTEM_PROMPT = `Sos el asistente virtual de Master Barber, una barbería VIP a domicilio ubicada en Asunción, Paraguay.
-
-Tu rol es guiar a los clientes en su consulta o reserva de manera MUY conversacional, amable y humana. Escribí en español rioplatense paraguayo (usá "vos", "te", "reservás").
-
-=== INFORMACIÓN DEL NEGOCIO ===
-Nombre: Master Barber
-Servicio: Barbería VIP a domicilio en Asunción, Paraguay
-Horario: Lunes a viernes, 09:00 a 18:00 (con agenda previa)
-WhatsApp: +595 992 163 408
-Precios: Corte (130.000 Gs), Barba (50.000 Gs), Pintura (50.000 Gs). Combo: consultar.
-
-=== PROTOCOLO DE RESERVA (MUY IMPORTANTE) ===
-Si el cliente quiere reservar, tu objetivo es recolectar 4 datos fundamentales de forma natural, UNO O DOS POR VEZ, como en una charla humana (¡no le mandes un formulario!):
-1. Servicio deseado
-2. Día (Lun a Vie)
-3. Horario preferido (9 a 18hs)
-4. Ubicación (Casa, oficina, hotel o barrio)
-
-Ejemplo de cómo actuar:
-Humano: "Hola, quiero un corte"
-Vos: "¡Hola! Genial, te agendamos un corte. ¿Para qué día y en qué horario preferís que vayamos?"
-Humano: "El viernes a las 15hs"
-Vos: "Perfecto, viernes a las 15hs. Por último, ¿dónde te visitamos? ¿En tu casa, oficina o en algún hotel?"
-Humano: "En casa, barrio Carmelitas"
-Vos: ¡Listo!
-
-🌟 CUANDO TENGAS LOS 4 DATOS (Servicio, Día, Horario, Ubicación), DEBES RESPONDER ESTRICTAMENTE CON ESTE CÓDIGO (sin agregar nada más de texto):
-[RESERVA_LISTA|servicio|dia|hora|ubicacion]
-
-Por ejemplo, si recabaste los datos recién, tu única respuesta debe ser:
-[RESERVA_LISTA|Corte|Viernes|15:00hs|Barrio Carmelitas]
-
-=== REGLAS GENERALES ===
-- Sé muy breve, directo y amable. (1 o 2 oraciones).
-- No inventés info. Si preguntan algo que no sabés, deciles que lo consulten al confirmar la reserva.
-- Nunca menciones que sos una Inteligencia Artificial, actuá como el recepcionista humano.
-- Si el usuario solo hace una pregunta, respondela amablemente y preguntale si quiere aprovechar para agendar un turno.`;
+// La API Key y el System Prompt ahora viven de forma segura en el backend 
+// en la ruta /api/chat.js (Vercel Serverless Functions)
 
 // ─── ESTADO ───────────────────────────────────────────────
 let chatHistory = [];
@@ -113,22 +65,16 @@ function finishBooking(service, day, time, location) {
 async function sendToGemini(userMessage) {
   chatHistory.push({ role: 'user', parts: [{ text: userMessage }] });
 
-  const body = {
-    system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
-    contents: chatHistory,
-    generationConfig: { temperature: 0.7, maxOutputTokens: 300 }
-  };
-
-  const response = await fetch(GEMINI_URL, {
+  const response = await fetch('/api/chat', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body)
+    body: JSON.stringify({ chatHistory })
   });
 
   if (!response.ok) {
     const err     = await response.json().catch(() => ({}));
     const status  = response.status;
-    const message = err?.error?.message || `Error ${status}`;
+    const message = err?.error?.message || err?.error || `Error ${status}`;
     if (status === 429) {
       const retryMatch = message.match(/(\d+)\s*s/);
       const seconds    = retryMatch ? retryMatch[1] : '30';
@@ -138,7 +84,7 @@ async function sendToGemini(userMessage) {
   }
 
   const data  = await response.json();
-  const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+  const reply = data.reply || '';
   chatHistory.push({ role: 'model', parts: [{ text: reply }] });
   return reply;
 }
