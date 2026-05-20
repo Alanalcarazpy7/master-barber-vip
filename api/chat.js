@@ -1,85 +1,233 @@
 export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
+  if (req.method !== "POST") {
+    return res.status(405).json({
+      error: "Method not allowed",
+    });
   }
 
-  const { chatHistory } = req.body;
+  try {
+    const {
+      message,
+      language = "es",
+      business = {},
 
-  if (!chatHistory) {
-    return res.status(400).json({ error: 'Missing chatHistory' });
+      // compatibilidad con tu versión anterior, por si algo viejo sigue mandando chatHistory
+      chatHistory,
+    } = req.body || {};
+
+    const userMessage =
+      typeof message === "string" && message.trim()
+        ? message.trim()
+        : extractLastUserMessage(chatHistory);
+
+    if (!userMessage) {
+      return res.status(400).json({
+        error: "Missing message",
+      });
+    }
+
+    const provider = process.env.AI_PROVIDER || "gemini";
+
+    if (provider === "openai") {
+      const reply = await askOpenAI({
+        message: userMessage,
+        language,
+        business,
+      });
+
+      return res.status(200).json({ reply });
+    }
+
+    const reply = await askGemini({
+      message: userMessage,
+      language,
+      business,
+    });
+
+    return res.status(200).json({ reply });
+  } catch (error) {
+    console.error("[api/chat]", error);
+
+    return res.status(500).json({
+      error: "AI request failed",
+    });
   }
+}
 
+/* ═══════════════════════════════════════════════════════════
+   GEMINI
+   Usa GEMINI_API_KEY desde .env.local o Vercel Environment Variables
+   ═══════════════════════════════════════════════════════════ */
+
+async function askGemini({ message, language, business }) {
   const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 
   if (!GEMINI_API_KEY) {
-    return res.status(500).json({ error: 'Falta configurar GEMINI_API_KEY en Vercel' });
+    throw new Error("Missing GEMINI_API_KEY");
   }
 
-  const GEMINI_MODEL = 'gemini-2.5-flash';
-  const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
+  const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash";
 
-  const SYSTEM_PROMPT = `Sos el asistente virtual de Master Barber, una barbería VIP a domicilio ubicada en Asunción, Paraguay.
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
 
-Tu rol es guiar a los clientes en su consulta o reserva de manera MUY conversacional, amable y humana. Escribí en español rioplatense paraguayo (usá "vos", "te", "reservás").
-
-=== INFORMACIÓN DEL NEGOCIO ===
-Nombre: Master Barber
-Servicio: Barbería VIP a domicilio en Asunción, Paraguay
-Horario: Lunes a viernes, 09:00 a 18:00 (con agenda previa)
-WhatsApp: +595 992 163 408
-Precios: Corte (130.000 Gs), Barba (50.000 Gs), Pintura (50.000 Gs). Combo: consultar.
-
-=== PROTOCOLO DE RESERVA (MUY IMPORTANTE) ===
-Si el cliente quiere reservar, tu objetivo es recolectar 4 datos fundamentales de forma natural, UNO O DOS POR VEZ, como en una charla humana (¡no le mandes un formulario!):
-1. Servicio deseado
-2. Día (Lun a Vie)
-3. Horario preferido (9 a 18hs)
-4. Ubicación (Casa, oficina, hotel o barrio)
-
-Ejemplo de cómo actuar:
-Humano: "Hola, quiero un corte"
-Vos: "¡Hola! Genial, te agendamos un corte. ¿Para qué día y en qué horario preferís que vayamos?"
-Humano: "El viernes a las 15hs"
-Vos: "Perfecto, viernes a las 15hs. Por último, ¿dónde te visitamos? ¿En tu casa, oficina o en algún hotel?"
-Humano: "En casa, barrio Carmelitas"
-Vos: ¡Listo!
-
-🌟 CUANDO TENGAS LOS 4 DATOS (Servicio, Día, Horario, Ubicación), DEBES RESPONDER ESTRICTAMENTE CON ESTE CÓDIGO (sin agregar nada más de texto):
-[RESERVA_LISTA|servicio|dia|hora|ubicacion]
-
-Por ejemplo, si recabaste los datos recién, tu única respuesta debe ser:
-[RESERVA_LISTA|Corte|Viernes|15:00hs|Barrio Carmelitas]
-
-=== REGLAS GENERALES ===
-- Sé muy breve, directo y amable. (1 o 2 oraciones).
-- No inventés info. Si preguntan algo que no sabés, deciles que lo consulten al confirmar la reserva.
-- Nunca menciones que sos una Inteligencia Artificial, actuá como el recepcionista humano.
-- Si el usuario solo hace una pregunta, respondela amablemente y preguntale si quiere aprovechar para agendar un turno.`;
+  const systemPrompt = buildSystemPrompt({ language, business });
 
   const body = {
-    system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
-    contents: chatHistory,
-    generationConfig: { temperature: 0.7, maxOutputTokens: 300 }
+    system_instruction: {
+      parts: [{ text: systemPrompt }],
+    },
+    contents: [
+      {
+        role: "user",
+        parts: [{ text: message }],
+      },
+    ],
+    generationConfig: {
+      temperature: 0.4,
+      maxOutputTokens: 250,
+    },
   };
 
-  try {
-    const response = await fetch(GEMINI_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
-    });
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-goog-api-key": GEMINI_API_KEY,
+    },
+    body: JSON.stringify(body),
+  });
 
-    if (!response.ok) {
-      const err = await response.json().catch(() => ({}));
-      return res.status(response.status).json(err);
-    }
+  const data = await response.json().catch(() => ({}));
 
-    const data = await response.json();
-    const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
-    
-    return res.status(200).json({ reply });
-  } catch (error) {
-    console.error('Error al conectarse a Gemini:', error);
-    return res.status(500).json({ error: 'Error del servidor al contactar con Gemini' });
+  if (!response.ok) {
+    console.error("[Gemini error]", data);
+    throw new Error(data?.error?.message || "Gemini request failed");
   }
+
+  const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text || "";
+
+  return cleanAiReply(reply, language);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   OPENAI OPCIONAL
+   Solo se usa si en .env ponés:
+   AI_PROVIDER=openai
+   OPENAI_API_KEY=tu_api_key
+   OPENAI_MODEL=gpt-4.1-mini
+   ═══════════════════════════════════════════════════════════ */
+
+async function askOpenAI({ message, language, business }) {
+  const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+
+  if (!OPENAI_API_KEY) {
+    throw new Error("Missing OPENAI_API_KEY");
+  }
+
+  const OPENAI_MODEL = process.env.OPENAI_MODEL || "gpt-4.1-mini";
+  const systemPrompt = buildSystemPrompt({ language, business });
+
+  const response = await fetch("https://api.openai.com/v1/responses", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${OPENAI_API_KEY}`,
+    },
+    body: JSON.stringify({
+      model: OPENAI_MODEL,
+      instructions: systemPrompt,
+      input: message,
+      max_output_tokens: 250,
+      temperature: 0.4,
+    }),
+  });
+
+  const data = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    console.error("[OpenAI error]", data);
+    throw new Error(data?.error?.message || "OpenAI request failed");
+  }
+
+  const reply =
+    data?.output_text || data?.output?.[0]?.content?.[0]?.text || "";
+
+  return cleanAiReply(reply, language);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PROMPT GENERAL DEL NEGOCIO
+   ═══════════════════════════════════════════════════════════ */
+
+function buildSystemPrompt({ language, business }) {
+  const isEnglish = language === "en";
+
+  const name = business?.name || "Master Barber";
+  const phone = business?.phone || "+595 992 163 408";
+  const whatsapp = business?.whatsapp || "595992163408";
+  const area = business?.area || "Asunción, Paraguay";
+  const hours = business?.hours || "Lunes a viernes 09:00 - 18:00";
+  const services = Array.isArray(business?.services) ? business.services : [];
+  const faqs = Array.isArray(business?.faqs) ? business.faqs : [];
+
+  return `
+Sos el asistente virtual de ${name}, una barbería VIP a domicilio.
+
+Idioma de respuesta:
+${isEnglish ? "English" : "Español paraguayo/rioplatense, usando vos cuando corresponda."}
+
+Información del negocio:
+- Nombre: ${name}
+- Teléfono: ${phone}
+- WhatsApp: ${whatsapp}
+- Zona: ${area}
+- Horario: ${hours}
+
+Servicios disponibles:
+${services.length ? JSON.stringify(services, null, 2) : "Corte de pelo, barba, pintura de pelo o barba, combo corte + barba."}
+
+Preguntas frecuentes:
+${faqs.length ? JSON.stringify(faqs, null, 2) : "No hay FAQs adicionales cargadas."}
+
+Reglas importantes:
+- Respondé breve, claro y humano.
+- No inventes información.
+- Si algo no está confirmado, decí que no está confirmado.
+- Si no estás seguro, recomendá consultar por WhatsApp.
+- No digas que sos una inteligencia artificial.
+- Tu objetivo es ayudar y llevar la consulta o reserva a WhatsApp.
+- No prometas disponibilidad real; siempre debe confirmarse por WhatsApp.
+- No uses markdown complejo.
+- Máximo 2 oraciones, salvo que pidan precios o lista de servicios.
+`;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HELPERS
+   ═══════════════════════════════════════════════════════════ */
+
+function cleanAiReply(reply, language = "es") {
+  const text = String(reply || "").trim();
+
+  if (text) return text;
+
+  return language === "en"
+    ? "I do not have that confirmed. You can ask directly by WhatsApp."
+    : "No tengo ese dato confirmado. Podés consultar directamente por WhatsApp.";
+}
+
+function extractLastUserMessage(chatHistory) {
+  if (!Array.isArray(chatHistory)) return "";
+
+  for (let i = chatHistory.length - 1; i >= 0; i--) {
+    const item = chatHistory[i];
+
+    const text = item?.parts?.[0]?.text || item?.content || item?.message || "";
+
+    if (typeof text === "string" && text.trim()) {
+      return text.trim();
+    }
+  }
+
+  return "";
 }

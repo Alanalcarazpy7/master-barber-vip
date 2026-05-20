@@ -1,368 +1,571 @@
 <!doctype html>
 <html lang="es-PY">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Master Barber | Barbería VIP a domicilio en Asunción</title>
+    <meta
+      name="description"
+      content="Reservá Master Barber, barbería VIP a domicilio en Asunción. Corte de pelo, barba y pintura con barbero profesional. Atención en español e inglés."
+    />
+    <meta
+      name="keywords"
+      content="Master Barber Paraguay, Master Barber Asunción, barbería a domicilio Asunción, barbero a domicilio Paraguay, corte de pelo a domicilio Asunción, barbería VIP Asunción"
+    />
+    <meta name="theme-color" content="#0B0B0B" />
+    <meta
+      property="og:title"
+      content="Master Barber | Barbería VIP a domicilio en Asunción"
+    />
+    <meta
+      property="og:description"
+      content="Corte, barba y estilo profesional sin moverte de casa, oficina u hotel. Reservá por WhatsApp."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:image"
+      content="https://masterbarber.com.py/wp-content/uploads/2025/04/MasterBarberMainLogo.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script type="application/ld+json" id="schema-json"></script>
+  </head>
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Master Barber | Barbería VIP a domicilio en Asunción</title>
-  <meta name="description"
-    content="Reservá Master Barber, barbería VIP a domicilio en Asunción. Corte de pelo, barba y pintura con barbero profesional. Atención en español e inglés." />
-  <meta name="keywords"
-    content="Master Barber Paraguay, Master Barber Asunción, barbería a domicilio Asunción, barbero a domicilio Paraguay, corte de pelo a domicilio Asunción, barbería VIP Asunción" />
-  <meta name="theme-color" content="#0B0B0B" />
-  <meta property="og:title" content="Master Barber | Barbería VIP a domicilio en Asunción" />
-  <meta property="og:description"
-    content="Corte, barba y estilo profesional sin moverte de casa, oficina u hotel. Reservá por WhatsApp." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://masterbarber.com.py/wp-content/uploads/2025/04/MasterBarberMainLogo.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
-  <script type="application/ld+json" id="schema-json"></script>
-</head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
 
-<body>
-  <div class="noise" aria-hidden="true"></div>
+    <header class="site-header" id="site-header">
+      <a class="brand" href="#inicio" aria-label="Ir al inicio">
+        <img id="header-logo" src="assets/logo-local.jpg" alt="Master Barber" />
+      </a>
 
-  <header class="site-header" id="site-header">
-    <a class="brand" href="#inicio" aria-label="Ir al inicio">
-      <img id="header-logo" src="assets/logo-local.jpg" alt="Master Barber" />
-    </a>
-
-    <nav class="desktop-nav" aria-label="Navegación principal">
-      <a href="#servicios">Servicios</a>
-      <a href="#como-funciona">Cómo funciona</a>
-      <a href="#galeria">Galería</a>
-      <a href="#resenas">Reseñas</a>
-      <a href="#contacto">Contacto</a>
-    </nav>
-
-    <div class="header-actions" style="display: flex; gap: 12px; align-items: center;">
-      <button class="lang-toggle-btn" onclick="toggleLanguage()" aria-label="Cambiar idioma"
-        style="display: flex; align-items: center; gap: 6px;">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
-          <path d="m5 8 6 6" />
-          <path d="m4 14 6-6 2-3" />
-          <path d="M2 5h12" />
-          <path d="M7 2h1" />
-          <path d="m22 22-5-10-5 10" />
-          <path d="M14 18h6" />
-        </svg>
-        <span class="lang-text">Traducir a: Inglés</span>
-      </button>
-      <a class="btn btn-red header-cta" data-whatsapp href="#" aria-label="Reservar cita por WhatsApp">Reservar Cita</a>
-      <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú" aria-expanded="false"
-        aria-controls="mobile-menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </header>
-
-  <aside class="mobile-menu" id="mobile-menu" aria-hidden="true">
-    <div class="mobile-menu-panel">
-      <div class="mobile-menu-head">
-        <img id="mobile-logo" src="assets/logo-local.jpg" alt="Master Barber" />
-        <button class="menu-close" id="menu-close" aria-label="Cerrar menú">×</button>
-      </div>
-      <a href="#servicios">Servicios</a>
-      <a href="#como-funciona">Cómo funciona</a>
-      <a href="#galeria">Galería</a>
-      <a href="#resenas">Reseñas</a>
-      <a href="#contacto">Contacto</a>
-      <a class="btn btn-red" data-whatsapp href="#">Reservar por WhatsApp</a>
-    </div>
-  </aside>
-
-  <main>
-    <section class="hero section" id="inicio">
-      <div class="hero-glow"></div>
-      <div class="container hero-grid">
-        <div class="hero-copy reveal">
-          <p class="eyebrow"><span></span> Para los amantes de lo mejor</p>
-          <h1>Barbería VIP <br />a domicilio <br /><em>en Asunción</em></h1>
-          <p class="hero-subtitle">Corte, barba y estilo profesional sin moverte de casa, oficina u hotel. Atención
-            personalizada en español e inglés.</p>
-          <div class="hero-actions">
-            <a class="btn btn-red btn-lg" data-whatsapp href="#">Reservar Cita</a>
-            <a class="btn btn-outline btn-lg" href="#servicios">Ver servicios</a>
-          </div>
-          <div class="trust-row" aria-label="Confianza y datos rápidos">
-            <div><strong>5.0 ★</strong><span>Google Maps</span></div>
-            <div><strong>7</strong><span>reseñas</span></div>
-            <div><strong>VIP</strong><span>a domicilio</span></div>
-          </div>
-        </div>
-
-        <div class="hero-visual reveal delay-1">
-          <div class="hero-card">
-            <img id="hero-image" src="assets/hero-local.jpg" alt="Servicio de barbería Master Barber a domicilio" />
-            <div class="hero-card-overlay">
-              <img id="hero-logo" src="assets/logo-local.jpg" alt="Logo Master Barber" />
-              <p>Servicio profesional a tu lugar</p>
-            </div>
-          </div>
-          <div class="floating-badge badge-left">Casa · oficina · hotel</div>
-          <div class="floating-badge badge-right">Español / English</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section intro-strip" aria-label="Resumen">
-      <div class="container intro-grid">
-        <div>
-          <span class="mini-label">Master Barber</span>
-          <h2>Tu tiempo vale. Nosotros vamos a vos.</h2>
-        </div>
-        <p>Una experiencia de barbería privada para hombres que quieren verse bien sin traslados, esperas ni perder
-          tiempo.</p>
-      </div>
-    </section>
-
-    <section class="section" id="beneficios">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="mini-label">Diferenciales</span>
-          <h2>Una barbería pensada para tu comodidad</h2>
-          <p>Servicio directo, profesional y premium para clientes que prefieren una atención personalizada.</p>
-        </div>
-        <div class="benefit-grid" id="benefits-list"></div>
-      </div>
-    </section>
-
-    <section class="section section-dark" id="servicios">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="mini-label">Servicios + precios</span>
-          <h2>Elegí tu servicio y reservá por WhatsApp</h2>
-          <p>Precios publicados por la marca. Confirmá disponibilidad, zona y horario antes de agendar.</p>
-        </div>
-        <div class="services-grid" id="services-list"></div>
-        <p class="price-note">Precios sujetos a confirmación al reservar por WhatsApp.</p>
-      </div>
-    </section>
-
-    <section class="section process" id="como-funciona">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="mini-label">Proceso</span>
-          <h2>Agendás, confirmamos y llegamos a tu ubicación</h2>
-        </div>
-        <div class="process-line" id="process-list"></div>
-      </div>
-    </section>
-
-    <section class="section proof-section" id="resenas">
-      <div class="container proof-grid">
-        <div class="rating-panel reveal">
-          <span class="mini-label">Reseñas</span>
-          <div class="rating-number">5.0</div>
-          <p>Calificación en Google Maps con 7 reseñas visibles.</p>
-          <a class="btn btn-outline" id="review-link" href="#" target="_blank" rel="noopener">Ver / dejar reseña</a>
-        </div>
-        <div class="reviews-list" id="reviews-list"></div>
-      </div>
-    </section>
-
-    <section class="section gallery-section" id="galeria">
-      <div class="container">
-        <div class="section-head centered reveal">
-          <span class="mini-label">Fotos reales</span>
-          <h2>Galería</h2>
-          <p>Cortes, barba y servicio profesional a domicilio. Las imágenes usan material real del negocio y respaldo
-            local de las capturas compartidas.</p>
-        </div>
-        <div class="gallery-filters" id="gallery-filters" role="list" aria-label="Filtros de galería"></div>
-        <div class="gallery-grid" id="gallery-grid"></div>
-      </div>
-    </section>
-
-    <section class="section faq-section" id="faq">
-      <div class="container faq-grid">
-        <div class="section-head reveal">
-          <span class="mini-label">FAQ</span>
-          <h2>Preguntas frecuentes</h2>
-          <p>Respuestas rápidas para resolver dudas antes de reservar.</p>
-        </div>
-        <div class="faq-list" id="faq-list"></div>
-      </div>
-    </section>
-
-    <section class="section contact-section" id="contacto">
-      <div class="container contact-panel reveal">
-        <div class="contact-copy">
-          <span class="mini-label">Contacto</span>
-          <h2>Reservá tu cita en minutos</h2>
-          <p>Escribí por WhatsApp, indicá servicio, ubicación y horario deseado. Master Barber confirma disponibilidad y
-            coordina la visita.</p>
-          <div class="contact-actions">
-            <a class="btn btn-red btn-lg" data-whatsapp href="#">Reservar por WhatsApp</a>
-            <a class="btn btn-outline btn-lg" id="maps-link" href="#" target="_blank" rel="noopener">Abrir Maps</a>
-          </div>
-        </div>
-        <div class="contact-info">
-          <div><span>WhatsApp</span><strong id="contact-phone">+595 992 163 408</strong></div>
-          <div><span>Zona</span><strong>Asunción, Paraguay</strong></div>
-          <div><span>Referencia</span><strong>Paseo La Galería · Av. Sta. Teresa 1827</strong></div>
-          <div><span>Horario</span><strong>Lun–Vie 09:00–18:00 · agenda previa</strong></div>
-        </div>
-      </div>
-      <div class="container map-wrap reveal">
-        <iframe title="Mapa referencia Master Barber Paseo La Galería" loading="lazy"
-          src="https://www.google.com/maps?q=-25.2844232,-57.562952&z=17&output=embed"></iframe>
-        <p>Referencia: Paseo La Galería. Servicio principal: barbería VIP a domicilio.</p>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div>
-        <img id="footer-logo" src="assets/logo-local.jpg" alt="Master Barber" />
-        <p>Servicio de barbero profesional a tu lugar en Asunción Paraguay.</p>
-      </div>
-      <div>
-        <h3>Links</h3>
+      <nav class="desktop-nav" aria-label="Navegación principal">
         <a href="#servicios">Servicios</a>
+        <a href="#como-funciona">Cómo funciona</a>
         <a href="#galeria">Galería</a>
         <a href="#resenas">Reseñas</a>
         <a href="#contacto">Contacto</a>
-      </div>
-      <div>
-        <h3>Redes sociales</h3>
-        <a class="footer-social" href="https://www.instagram.com/masterbarberpy/" target="_blank" rel="noopener"
-          aria-label="Instagram Master Barber">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
-            <path
-              d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.33 3.608 1.306.975.975 1.243 2.242 1.305 3.608.058 1.266.07 1.646.07 4.853s-.012 3.587-.07 4.853c-.062 1.366-.33 2.633-1.305 3.608-.975.975-2.242 1.243-3.608 1.305-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.33-3.608-1.305C2.493 19.446 2.225 18.18 2.163 16.813 2.105 15.547 2.093 15.167 2.093 11.963s.012-3.584.07-4.85c.062-1.366.33-2.633 1.305-3.608C4.443 2.53 5.71 2.262 7.076 2.2 8.342 2.142 8.722 2.13 11.926 2.13L12 2.163zm0-2.163c-3.259 0-3.667.014-4.947.072-1.521.07-3.024.42-4.186 1.582C1.706 2.816 1.356 4.319 1.286 5.84.228 8.198.214 8.606.214 11.865s.014 3.667.072 4.947c.07 1.521.42 3.024 1.582 4.186 1.162 1.162 2.665 1.512 4.186 1.582 1.28.058 1.688.072 4.947.072s3.667-.014 4.947-.072c1.521-.07 3.024-.42 4.186-1.582 1.162-1.162 1.512-2.665 1.582-4.186.058-1.28.072-1.688.072-4.947s-.014-3.667-.072-4.947c-.07-1.521-.42-3.024-1.582-4.186C20.677.634 19.174.284 17.653.214 16.373.156 15.965.142 12.706.142L12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" />
+      </nav>
+
+      <div
+        class="header-actions"
+        style="display: flex; gap: 12px; align-items: center"
+      >
+        <button
+          class="lang-toggle-btn"
+          onclick="toggleLanguage()"
+          aria-label="Cambiar idioma"
+          style="display: flex; align-items: center; gap: 6px"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            width="16"
+            height="16"
+          >
+            <path d="m5 8 6 6" />
+            <path d="m4 14 6-6 2-3" />
+            <path d="M2 5h12" />
+            <path d="M7 2h1" />
+            <path d="m22 22-5-10-5 10" />
+            <path d="M14 18h6" />
           </svg>
-          Instagram
-        </a>
-        <a class="footer-social" href="https://www.facebook.com/p/Master-Barber-PY-61575632819443/" target="_blank"
-          rel="noopener" aria-label="Facebook Master Barber">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
-            <path
-              d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.931-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z" />
-          </svg>
-          Facebook
-        </a>
-      </div>
-    </div>
-
-    <div class="footer-bottom">© <span id="year"></span> Master Barber. Demo preparada para presentación comercial.
-    </div>
-  </footer>
-
-  <div class="mobile-sticky-cta">
-    <a data-whatsapp href="#">Reservar por WhatsApp</a>
-  </div>
-
-  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Imagen de galería">
-    <button class="lightbox-close" id="lightbox-close" aria-label="Cerrar imagen">×</button>
-    <img id="lightbox-img" src="" alt="" />
-    <p id="lightbox-caption"></p>
-  </div>
-
-  <!-- ═══ CHATBOT WIDGET ═══════════════════════════════════ -->
-  <div class="chatbot-widget" id="chatbot-widget" aria-live="polite">
-
-    <!-- Panel de conversación -->
-    <div class="chat-panel" id="chat-panel" role="dialog" aria-label="Asistente Master Barber">
-      <div class="chat-header">
-        <div class="chat-header-info">
-          <div class="chat-avatar">✂</div>
-          <div>
-            <strong>Master Barber</strong>
-            <span>Asistente virtual</span>
-          </div>
-        </div>
-        <button class="chat-close-btn" id="chat-close" aria-label="Cerrar chat">×</button>
-      </div>
-
-      <div class="chat-messages" id="chat-messages"></div>
-
-      <!-- Indicador de carga -->
-      <div class="chat-loading" id="chat-loading" style="display:none;">
-        <span></span><span></span><span></span>
-      </div>
-
-      <div class="chat-footer">
-        <textarea id="chat-input" class="chat-input" placeholder="Escribí tu consulta..." rows="1"
-          aria-label="Escribir mensaje"></textarea>
-        <button class="chat-send-btn" id="chat-send" aria-label="Enviar mensaje">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
-            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
-          </svg>
+          <span class="lang-text">Traducir a: Inglés</span>
+        </button>
+        <a
+          class="btn btn-red header-cta"
+          data-whatsapp
+          href="#"
+          aria-label="Reservar cita por WhatsApp"
+          >Reservar Cita</a
+        >
+        <button
+          class="menu-toggle"
+          id="menu-toggle"
+          aria-label="Abrir menú"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
+          <span></span><span></span><span></span>
         </button>
       </div>
+    </header>
+
+    <aside class="mobile-menu" id="mobile-menu" aria-hidden="true">
+      <div class="mobile-menu-panel">
+        <div class="mobile-menu-head">
+          <img
+            id="mobile-logo"
+            src="assets/logo-local.jpg"
+            alt="Master Barber"
+          />
+          <button class="menu-close" id="menu-close" aria-label="Cerrar menú">
+            ×
+          </button>
+        </div>
+        <a href="#servicios">Servicios</a>
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#galeria">Galería</a>
+        <a href="#resenas">Reseñas</a>
+        <a href="#contacto">Contacto</a>
+        <a class="btn btn-red" data-whatsapp href="#">Reservar por WhatsApp</a>
+      </div>
+    </aside>
+
+    <main>
+      <section class="hero section" id="inicio">
+        <div class="hero-glow"></div>
+        <div class="container hero-grid">
+          <div class="hero-copy reveal">
+            <p class="eyebrow"><span></span> Para los amantes de lo mejor</p>
+            <h1>Barbería VIP <br />a domicilio <br /><em>en Asunción</em></h1>
+            <p class="hero-subtitle">
+              Corte, barba y estilo profesional sin moverte de casa, oficina u
+              hotel. Atención personalizada en español e inglés.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-red btn-lg" data-whatsapp href="#"
+                >Reservar Cita</a
+              >
+              <a class="btn btn-outline btn-lg" href="#servicios"
+                >Ver servicios</a
+              >
+            </div>
+            <div class="trust-row" aria-label="Confianza y datos rápidos">
+              <div><strong>5.0 ★</strong><span>Google Maps</span></div>
+              <div><strong>7</strong><span>reseñas</span></div>
+              <div><strong>VIP</strong><span>a domicilio</span></div>
+            </div>
+          </div>
+
+          <div class="hero-visual reveal delay-1">
+            <div class="hero-card">
+              <img
+                id="hero-image"
+                src="assets/hero-local.jpg"
+                alt="Servicio de barbería Master Barber a domicilio"
+              />
+              <div class="hero-card-overlay">
+                <img
+                  id="hero-logo"
+                  src="assets/logo-local.jpg"
+                  alt="Logo Master Barber"
+                />
+                <p>Servicio profesional a tu lugar</p>
+              </div>
+            </div>
+            <div class="floating-badge badge-left">Casa · oficina · hotel</div>
+            <div class="floating-badge badge-right">Español / English</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section intro-strip" aria-label="Resumen">
+        <div class="container intro-grid">
+          <div>
+            <span class="mini-label">Master Barber</span>
+            <h2>Tu tiempo vale. Nosotros vamos a vos.</h2>
+          </div>
+          <p>
+            Una experiencia de barbería privada para hombres que quieren verse
+            bien sin traslados, esperas ni perder tiempo.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" id="beneficios">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="mini-label">Diferenciales</span>
+            <h2>Una barbería pensada para tu comodidad</h2>
+            <p>
+              Servicio directo, profesional y premium para clientes que
+              prefieren una atención personalizada.
+            </p>
+          </div>
+          <div class="benefit-grid" id="benefits-list"></div>
+        </div>
+      </section>
+
+      <section class="section section-dark" id="servicios">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="mini-label">Servicios + precios</span>
+            <h2>Elegí tu servicio y reservá por WhatsApp</h2>
+            <p>
+              Precios publicados por la marca. Confirmá disponibilidad, zona y
+              horario antes de agendar.
+            </p>
+          </div>
+          <div class="services-grid" id="services-list"></div>
+          <p class="price-note">
+            Precios sujetos a confirmación al reservar por WhatsApp.
+          </p>
+        </div>
+      </section>
+
+      <section class="section process" id="como-funciona">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="mini-label">Proceso</span>
+            <h2>Agendás, confirmamos y llegamos a tu ubicación</h2>
+          </div>
+          <div class="process-line" id="process-list"></div>
+        </div>
+      </section>
+
+      <section class="section proof-section" id="resenas">
+        <div class="container proof-grid">
+          <div class="rating-panel reveal">
+            <span class="mini-label">Reseñas</span>
+            <div class="rating-number">5.0</div>
+            <p>Calificación en Google Maps con 7 reseñas visibles.</p>
+            <a
+              class="btn btn-outline"
+              id="review-link"
+              href="#"
+              target="_blank"
+              rel="noopener"
+              >Ver / dejar reseña</a
+            >
+          </div>
+          <div class="reviews-list" id="reviews-list"></div>
+        </div>
+      </section>
+
+      <section class="section gallery-section" id="galeria">
+        <div class="container">
+          <div class="section-head centered reveal">
+            <span class="mini-label">Fotos reales</span>
+            <h2>Galería</h2>
+            <p>
+              Cortes, barba y servicio profesional a domicilio. Las imágenes
+              usan material real del negocio y respaldo local de las capturas
+              compartidas.
+            </p>
+          </div>
+          <div
+            class="gallery-filters"
+            id="gallery-filters"
+            role="list"
+            aria-label="Filtros de galería"
+          ></div>
+          <div class="gallery-grid" id="gallery-grid"></div>
+        </div>
+      </section>
+
+      <section class="section faq-section" id="faq">
+        <div class="container faq-grid">
+          <div class="section-head reveal">
+            <span class="mini-label">FAQ</span>
+            <h2>Preguntas frecuentes</h2>
+            <p>Respuestas rápidas para resolver dudas antes de reservar.</p>
+          </div>
+          <div class="faq-list" id="faq-list"></div>
+        </div>
+      </section>
+
+      <section class="section contact-section" id="contacto">
+        <div class="container contact-panel reveal">
+          <div class="contact-copy">
+            <span class="mini-label">Contacto</span>
+            <h2>Reservá tu cita en minutos</h2>
+            <p>
+              Escribí por WhatsApp, indicá servicio, ubicación y horario
+              deseado. Master Barber confirma disponibilidad y coordina la
+              visita.
+            </p>
+            <div class="contact-actions">
+              <a class="btn btn-red btn-lg" data-whatsapp href="#"
+                >Reservar por WhatsApp</a
+              >
+              <a
+                class="btn btn-outline btn-lg"
+                id="maps-link"
+                href="#"
+                target="_blank"
+                rel="noopener"
+                >Abrir Maps</a
+              >
+            </div>
+          </div>
+          <div class="contact-info">
+            <div>
+              <span>WhatsApp</span
+              ><strong id="contact-phone">+595 992 163 408</strong>
+            </div>
+            <div><span>Zona</span><strong>Asunción, Paraguay</strong></div>
+            <div>
+              <span>Referencia</span
+              ><strong>Paseo La Galería · Av. Sta. Teresa 1827</strong>
+            </div>
+            <div>
+              <span>Horario</span
+              ><strong>Lun–Vie 09:00–18:00 · agenda previa</strong>
+            </div>
+          </div>
+        </div>
+        <div class="container map-wrap reveal">
+          <iframe
+            title="Mapa referencia Master Barber Paseo La Galería"
+            loading="lazy"
+            src="https://www.google.com/maps?q=-25.2844232,-57.562952&z=17&output=embed"
+          ></iframe>
+          <p>
+            Referencia: Paseo La Galería. Servicio principal: barbería VIP a
+            domicilio.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <img
+            id="footer-logo"
+            src="assets/logo-local.jpg"
+            alt="Master Barber"
+          />
+          <p>
+            Servicio de barbero profesional a tu lugar en Asunción Paraguay.
+          </p>
+        </div>
+        <div>
+          <h3>Links</h3>
+          <a href="#servicios">Servicios</a>
+          <a href="#galeria">Galería</a>
+          <a href="#resenas">Reseñas</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+        <div>
+          <h3>Redes sociales</h3>
+          <a
+            class="footer-social"
+            href="https://www.instagram.com/masterbarberpy/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Instagram Master Barber"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              width="18"
+              height="18"
+            >
+              <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.33 3.608 1.306.975.975 1.243 2.242 1.305 3.608.058 1.266.07 1.646.07 4.853s-.012 3.587-.07 4.853c-.062 1.366-.33 2.633-1.305 3.608-.975.975-2.242 1.243-3.608 1.305-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.33-3.608-1.305C2.493 19.446 2.225 18.18 2.163 16.813 2.105 15.547 2.093 15.167 2.093 11.963s.012-3.584.07-4.85c.062-1.366.33-2.633 1.305-3.608C4.443 2.53 5.71 2.262 7.076 2.2 8.342 2.142 8.722 2.13 11.926 2.13L12 2.163zm0-2.163c-3.259 0-3.667.014-4.947.072-1.521.07-3.024.42-4.186 1.582C1.706 2.816 1.356 4.319 1.286 5.84.228 8.198.214 8.606.214 11.865s.014 3.667.072 4.947c.07 1.521.42 3.024 1.582 4.186 1.162 1.162 2.665 1.512 4.186 1.582 1.28.058 1.688.072 4.947.072s3.667-.014 4.947-.072c1.521-.07 3.024-.42 4.186-1.582 1.162-1.162 1.512-2.665 1.582-4.186.058-1.28.072-1.688.072-4.947s-.014-3.667-.072-4.947c-.07-1.521-.42-3.024-1.582-4.186C20.677.634 19.174.284 17.653.214 16.373.156 15.965.142 12.706.142L12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"
+              />
+            </svg>
+            Instagram
+          </a>
+          <a
+            class="footer-social"
+            href="https://www.facebook.com/p/Master-Barber-PY-61575632819443/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Facebook Master Barber"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              width="18"
+              height="18"
+            >
+              <path
+                d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.931-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"
+              />
+            </svg>
+            Facebook
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        © <span id="year"></span> Master Barber. Sitio web desarrollado por
+        <a
+          href="https://solvatech.vercel.app/"
+          target="_blank"
+          rel="noopener"
+          class="developer-link"
+        >
+          SolvaTech </a
+        >.
+      </div>
+    </footer>
+
+    <div class="mobile-sticky-cta">
+      <a data-whatsapp href="#">Reservar por WhatsApp</a>
     </div>
 
-    <!-- Botón flotante de apertura -->
-    <button class="chat-toggle-btn" id="chat-toggle" aria-label="Abrir asistente" aria-expanded="false">
-      <span class="chat-toggle-icon chat-icon-open">💬</span>
-      <span class="chat-toggle-icon chat-icon-close" style="display:none;">×</span>
-    </button>
+    <div
+      class="lightbox"
+      id="lightbox"
+      aria-hidden="true"
+      role="dialog"
+      aria-label="Imagen de galería"
+    >
+      <button
+        class="lightbox-close"
+        id="lightbox-close"
+        aria-label="Cerrar imagen"
+      >
+        ×
+      </button>
+      <img id="lightbox-img" src="" alt="" />
+      <p id="lightbox-caption"></p>
+    </div>
 
-  </div>
-  <!-- ═══ FIN CHATBOT ══════════════════════════════════════ -->
+    <!-- ═══ CHATBOT WIDGET ═══════════════════════════════════ -->
+    <div class="chatbot-widget" id="chatbot-widget" aria-live="polite">
+      <!-- Panel de conversación -->
+      <div
+        class="chat-panel"
+        id="chat-panel"
+        role="dialog"
+        aria-label="Asistente Master Barber"
+      >
+        <div class="chat-header">
+          <div class="chat-header-info">
+            <div class="chat-avatar">✂</div>
+            <div>
+              <strong>Master Barber</strong>
+              <span>Asistente virtual</span>
+            </div>
+          </div>
+          <button
+            class="chat-close-btn"
+            id="chat-close"
+            aria-label="Cerrar chat"
+          >
+            ×
+          </button>
+        </div>
 
-  <script src="data.js"></script>
-  <script src="chatbot.js"></script>
+        <div class="chat-messages" id="chat-messages"></div>
 
+        <!-- Indicador de carga -->
+        <div class="chat-loading" id="chat-loading" style="display: none">
+          <span></span><span></span><span></span>
+        </div>
 
-  <div id="google_translate_element" style="display:none;"></div>
-  <script type="text/javascript">
-    function setLanguageCookie(lang) {
-      document.cookie = `googtrans=/es/${lang}; path=/; domain=${window.location.hostname}`;
-      document.cookie = `googtrans=/es/${lang}; path=/`;
-      location.reload();
-    }
+        <div class="chat-footer">
+          <textarea
+            id="chat-input"
+            class="chat-input"
+            placeholder="Escribí tu consulta..."
+            rows="1"
+            aria-label="Escribir mensaje"
+          ></textarea>
+          <button
+            class="chat-send-btn"
+            id="chat-send"
+            aria-label="Enviar mensaje"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              width="18"
+              height="18"
+            >
+              <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+            </svg>
+          </button>
+        </div>
+      </div>
 
-    function toggleLanguage() {
-      const isEnglish = document.cookie.includes('googtrans=/es/en');
-      if (isEnglish) {
-        document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${window.location.hostname}`;
-        document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
+      <!-- Botón flotante de apertura -->
+      <button
+        class="chat-toggle-btn"
+        id="chat-toggle"
+        aria-label="Abrir asistente"
+        aria-expanded="false"
+      >
+        <span class="chat-toggle-icon chat-icon-open">💬</span>
+        <span class="chat-toggle-icon chat-icon-close" style="display: none"
+          >×</span
+        >
+      </button>
+    </div>
+    <!-- ═══ FIN CHATBOT ══════════════════════════════════════ -->
+
+    <script src="data.js"></script>
+    <script src="chatbot.js"></script>
+
+    <div id="google_translate_element" style="display: none"></div>
+    <script type="text/javascript">
+      function setLanguageCookie(lang) {
+        document.cookie = `googtrans=/es/${lang}; path=/; domain=${window.location.hostname}`;
+        document.cookie = `googtrans=/es/${lang}; path=/`;
         location.reload();
-      } else {
-        setLanguageCookie('en');
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const isEnglish = document.cookie.includes('googtrans=/es/en');
-      document.querySelectorAll('.lang-toggle-btn .lang-text').forEach(span => {
-        span.innerText = isEnglish ? 'Traducir a: Español' : 'Traducir a: Inglés';
-      });
-
-      // Muestra chip discreto si la traducción está activa
-      const notice = document.getElementById('translate-notice');
-      if (isEnglish && notice) {
-        notice.classList.add('visible');
       }
 
-      // Elimina el desplazamiento vertical que Google aplica al body
-      const observer = new MutationObserver(() => {
-        if (document.body.style.top && document.body.style.top !== '0px') {
-          document.body.style.top = '0';
+      function toggleLanguage() {
+        const isEnglish = document.cookie.includes("googtrans=/es/en");
+        if (isEnglish) {
+          document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${window.location.hostname}`;
+          document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
+          location.reload();
+        } else {
+          setLanguageCookie("en");
         }
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const isEnglish = document.cookie.includes("googtrans=/es/en");
+        document
+          .querySelectorAll(".lang-toggle-btn .lang-text")
+          .forEach((span) => {
+            span.innerText = isEnglish
+              ? "Traducir a: Español"
+              : "Traducir a: Inglés";
+          });
+
+        // Muestra chip discreto si la traducción está activa
+        const notice = document.getElementById("translate-notice");
+        if (isEnglish && notice) {
+          notice.classList.add("visible");
+        }
+
+        // Elimina el desplazamiento vertical que Google aplica al body
+        const observer = new MutationObserver(() => {
+          if (document.body.style.top && document.body.style.top !== "0px") {
+            document.body.style.top = "0";
+          }
+        });
+        observer.observe(document.body, {
+          attributes: true,
+          attributeFilter: ["style"],
+        });
       });
-      observer.observe(document.body, { attributes: true, attributeFilter: ['style'] });
-    });
 
-    function googleTranslateElementInit() {
-      new google.translate.TranslateElement({
-        pageLanguage: 'es',
-        includedLanguages: 'en',
-        autoDisplay: false
-      }, 'google_translate_element');
-    }
-  </script>
-  <script type="text/javascript"
-    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-</body>
-
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          {
+            pageLanguage: "es",
+            includedLanguages: "en",
+            autoDisplay: false,
+          },
+          "google_translate_element",
+        );
+      }
+    </script>
+    <script
+      type="text/javascript"
+      src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+    ></script>
+  </body>
 </html>
