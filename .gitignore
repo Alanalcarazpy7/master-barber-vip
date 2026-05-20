@@ -1,1 +1,4 @@
 .vercel
+# API Key local — nunca subir al repo
+config.js
+.env
